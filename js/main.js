@@ -41,7 +41,6 @@ function init() {
 }
 
 
-
 function renderBoard() {
 
   // loop over board array
@@ -157,7 +156,7 @@ function checkHorizontalWinner(colIdx, rowIdx) {
   // right
   const adjCountRight = countAdjacent(colIdx, rowIdx, 1, 0)
 
-  return adjCountLeft + adjCountRight >= 0 ? board[colIdx][rowIdx] : null
+  return adjCountLeft + adjCountRight >= 2 ? board[colIdx][rowIdx] : null
 }
 
 
@@ -165,7 +164,7 @@ function checkHorizontalWinner(colIdx, rowIdx) {
 function checkVerticalWinner(colIdx, rowIdx) {
 
   // go from N to S
-  return countAdjacent(colIdx, rowIdx, 0, -1) === 0 ? board[colIdx][rowIdx] : null
+  return countAdjacent(colIdx, rowIdx, 0, -1) === 2 ? board[colIdx][rowIdx] : null
 }
 
 // check diagonal
@@ -176,7 +175,7 @@ function checkDiagonalWinNWSE(colIdx, rowIdx) {
   // go SE
   const adjCountSE = countAdjacent(colIdx, rowIdx, 1, -1)
 
-  return adjCountNW + adjCountSE >= 0 ? board[colIdx][rowIdx] : null
+  return adjCountNW + adjCountSE >= 2 ? board[colIdx][rowIdx] : null
 }
 
 function checkDiagonalWinNESW(colIdx, rowIdx) {
@@ -186,11 +185,13 @@ const adjCountNE = countAdjacent(colIdx, rowIdx, 1, 1)
 // go SE
 const adjCountSW = countAdjacent(colIdx, rowIdx, -1, -1)
 
-return adjCountNE + adjCountSW >= 0 ? board[colIdx][rowIdx] : null
+return adjCountNE + adjCountSW >= 2 ? board[colIdx][rowIdx] : null
 }
 
 // winner check
 function getWinner(colIdx, rowIdx) {
+
+  if(winner === 'T') return
 
     return (
         checkVerticalWinner(colIdx, rowIdx) || 

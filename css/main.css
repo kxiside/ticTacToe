@@ -8,16 +8,29 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;   
+    background-color: black;
     
 }
 
 header {
     font-size: 5vmin;
     letter-spacing: 1vmin;
+    color: yellow;
+}
+
+h1 {
+    color: yellow
 }
 
 h2 {
     font-size: 3vmin;
+    color: yellow;
+}
+
+h3 {
+    color: grey
+    border: white;
+    background-color: grey;
 }
 
 button:hover {
@@ -35,9 +48,10 @@ button:hover {
 
 #board>div {
     border-radius: 0;
-    border-color: solid black;
+    border-color: solid white;
     border: .1vmin solid gray;
     cursor: pointer;
+    color: yellow;
 }
 
 button {
