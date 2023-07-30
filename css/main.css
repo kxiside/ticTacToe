@@ -1,3 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;   
     
+}
+
+header {
+    font-size: 5vmin;
+    letter-spacing: 1vmin;
+}
+
+h2 {
+    font-size: 3vmin;
+}
+
+button:hover {
+    color: white;
+    background-color: darkgrey;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 10vmin);
+    grid-template-rows: repeat(3, 10vmin);
+    gap: 0;
+    margin-top: -2vmin;
+}
+
+#board>div {
+    border-radius: 0;
+    border-color: solid black;
+    border: .1vmin solid gray;
+    cursor: pointer;
+}
+
+button {
+    border: 0.1vmin solid grey;
+    border-radius: 2vmin;
+    font-size: 2vmin;
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
 }
