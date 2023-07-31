@@ -66,7 +66,7 @@ function renderBoard() {
 function renderControls() {
 
 // change reset button visability
-//resetBtn.style.visibility = winner ? 'visible' : 'hidden'
+resetBtn.style.visibility = winner ? 'visible' : 'hidden'
 
 }
 
@@ -134,6 +134,9 @@ function countAdjacent(colIdx, rowIdx, colOffset, rowOffset) {
   const player = board[colIdx][rowIdx]
   let count = 0
 
+  colIdx += colOffset
+  rowIdx += rowOffset
+
   //keep within board
   // count if square matches player
   while (
@@ -141,10 +144,11 @@ function countAdjacent(colIdx, rowIdx, colOffset, rowOffset) {
     board[colIdx][rowIdx] !== undefined && 
     board[colIdx][rowIdx] === player
   ){
-    count ++
+    count++
     colIdx += colOffset
     rowIdx += rowOffset
   }
+  return count
   
 } 
 
@@ -162,6 +166,12 @@ function checkHorizontalWinner(colIdx, rowIdx) {
 
 // check vertical win
 function checkVerticalWinner(colIdx, rowIdx) {
+
+  // up
+  const adjCountUp = countAdjacent(colIdx, rowIdx, 0, 1)
+
+  // down
+  const adjCountDown = countAdjacent(colIdx, rowIdx, 0, -1)
 
   // go from N to S
   return countAdjacent(colIdx, rowIdx, 0, -1) === 2 ? board[colIdx][rowIdx] : null
@@ -191,7 +201,12 @@ return adjCountNE + adjCountSW >= 2 ? board[colIdx][rowIdx] : null
 // winner check
 function getWinner(colIdx, rowIdx) {
 
-  if(winner === 'T') return
+  let count = 0
+  board.forEach((arr)=> {
+    if(!arr.includes(0)) count+=1
+  })
+
+  if(count === 3) return 'T'
 
     return (
         checkVerticalWinner(colIdx, rowIdx) || 
